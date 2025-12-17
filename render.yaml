@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: tiny-sumo-hub
+    env: node
+    buildCommand: npm ci && npm run build
+    startCommand: npm run preview
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: PUBLIC_URL
+        value: https://hub.tiny-sumo.com
