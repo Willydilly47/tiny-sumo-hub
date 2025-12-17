@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Sumo Huly - Branded Project Management</title>
+    
+    <!-- Tiny Sumo Brand Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts?family=Inter:.googleapis.com/css2wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ts-primary: #8b0000;
+            --ts-secondary: #2d1b1b;
+            --ts-accent: #a52a2a;
+            --ts-text: #ffffff;
+            --ts-text-secondary: rgba(255,255,255,0.7);
+            --ts-bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d1b1b 100%);
+            --ts-surface: rgba(255, 255, 255, 0.05);
+            --ts-surface-hover: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Sora', sans-serif;
+            line-height: 1.6;
+            color: var(--ts-text);
+            background: var(--ts-bg-gradient);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Huly-style Layout */
+        .huly-container {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "sidebar main";
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 80px 1fr;
+            height: 100vh;
+        }
+        
+        /* Header */
+        .huly-header {
+            grid-area: header;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--ts-primary);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ts-primary) 0%, var(--ts-accent) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .company-info h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ts-text);
+        }
+        
+        .company-info p {
+            font-size: 0.9rem;
+            color: var(--ts-text-secondary);
+        }
+        
+        /* Sidebar */
+        .huly-sidebar {
+            grid-area: sidebar;
+            background: rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-section {
+            margin-bottom: 30px;
+        }
+        
+        .nav-section h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ts-primary);
+            margin-bottom: 15px;
+            padding: 0 20px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--ts-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: var(--ts-surface);
+            border-left-color: var(--ts-primary);
+            color: var(--ts-primary);
+        }
+        
+        .nav-item.active {
+            background: var(--ts-surface);
+            border-left-color: var(--ts-primary);
+            color: var(--ts-primary);
+        }
+        
+        /* Main Content */
+        .huly-main {
+            grid-area: main;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-card {
+            background: var(--ts-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            border-color: var(--ts-primary);
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--ts-primary) 0%, var(--ts-accent) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .card-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ts-text);
+        }
+        
+        .card-content {
+            color: var(--ts-text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .card-action {
+            background: linear-gradient(135deg, var(--ts-primary) 0%, var(--ts-accent) 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .card-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* Custom Tools Section */
+        .custom-tools {
+            margin-top: 40px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--ts-text);
+            margin-bottom: 10px;
+        }
+        
+        .section-header p {
+            color: var(--ts-text-secondary);
+            font-size: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .huly-container {
+                grid-template-areas: 
+                    "header"
+                    "main";
+                grid-template-columns: 1fr;
+                grid-template-rows: 80px 1fr;
+            }
+            
+            .huly-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="huly-container">
+        <!-- Header -->
+        <header class="huly-header">
+            <div class="logo-section">
+                <div class="logo">🚀</div>
+                <div class="company-info">
+                    <h1>Tiny Sumo Huly</h1>
+                    <p>Tiny Sumo. Giant Growth</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <nav class="huly-sidebar">
+            <div class="nav-section">
+                <h3>Dashboard</h3>
+                <a href="#" class="nav-item active">
+                    <span>📊</span>
+                    Overview
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📈</span>
+                    Analytics
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Projects</h3>
+                <a href="#" class="nav-item">
+                    <span>📁</span>
+                    All Projects
+                </a>
+                <a href="#" class="nav-item">
+                    <span>🎯</span>
+                    Campaigns
+                </a>
+                <a href="#" class="nav-item">
+                    <span>👥</span>
+                    Client Work
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Custom Tools</h3>
+                <a href="#" class="nav-item">
+                    <span>📊</span>
+                    Analytics Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <span>👥</span>
+                    CRM System
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📧</span>
+                    Email Marketing
+                </a>
+                <a href="#" class="nav-item">
+                    <span>📱</span>
+                    Social Media
+                </a>
+                <a href="#" class="nav-item">
+                    <span>🔍</span>
+                    SEO Tools
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="huly-main">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <h3 class="card-title">Analytics Dashboard</h3>
+                    </div>
+                    <div class="card-content">
+                        Track campaign performance, ROI, and key metrics across all marketing channels
+                    </div>
+                    <a href="#" class="card-action">View Dashboard</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">👥</div>
+                        <h3 class="card-title">CRM System</h3>
+                    </div>
+                    <div class="card-content">
+                        Manage client relationships, contact database, and sales pipeline
+                    </div>
+                    <a href="#" class="card-action">Open CRM</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <h3 class="card-title">Campaign Manager</h3>
+                    </div>
+                    <div class="card-content">
+                        Create, manage, and optimize marketing campaigns across platforms
+                    </div>
+                    <a href="#" class="card-action">Manage Campaigns</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📧</div>
+                        <h3 class="card-title">Email Marketing</h3>
+                    </div>
+                    <div class="card-content">
+                        Design email campaigns, manage lists, and track performance
+                    </div>
+                    <a href="#" class="card-action">Email Tools</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📱</div>
+                        <h3 class="card-title">Social Media</h3>
+                    </div>
+                    <div class="card-content">
+                        Schedule posts, monitor engagement, and manage social presence
+                    </div>
+                    <a href="#" class="card-action">Social Hub</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔍</div>
+                        <h3 class="card-title">SEO Tools</h3>
+                    </div>
+                    <div class="card-content">
+                        Keyword research, site audits, and ranking monitoring
+                    </div>
+                    <a href="#" class="card-action">SEO Dashboard</a>
+                </div>
+            </div>
+
+            <div class="custom-tools">
+                <div class="section-header">
+                    <h2>Custom Integrations</h2>
+                    <p>Your custom-built tools seamlessly integrated into the Huly interface</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simulate Huly functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation handling
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Simulate navigation
+                    const toolName = this.textContent.trim();
+                    console.log(`Navigating to: ${toolName}`);
+                });
+            });
+            
+            // Card interactions
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('card-action')) return;
+                    
+                    const toolName = this.querySelector('.card-title').textContent;
+                    console.log(`Opening tool: ${toolName}`);
+                    
+                    // Add hover effect
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

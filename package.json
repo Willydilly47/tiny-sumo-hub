@@ -1,0 +1,16 @@
+{
+  "name": "tiny-sumo-hub",
+  "version": "1.0.0",
+  "description": "Tiny Sumo Marketing Hub - Professional Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "serve -s public -l 3000",
+    "build": "echo 'No build needed for Huly static interface'",
+    "preview": "serve -s public -l 3000",
+    "start": "serve -s public -l 3000"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {}
+}

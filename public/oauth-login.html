@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Sumo Huly - Secure Login</title>
+    
+    <!-- Tiny Sumo Brand Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ts-primary: #8b0000;
+            --ts-secondary: #2d1b1b;
+            --ts-accent: #a52a2a;
+            --ts-text: #ffffff;
+            --ts-text-secondary: rgba(255,255,255,0.7);
+            --ts-bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d1b1b 100%);
+            --ts-surface: rgba(255, 255, 255, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Sora', sans-serif;
+            line-height: 1.6;
+            color: var(--ts-text);
+            background: var(--ts-bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .login-container {
+            background: var(--ts-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 450px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .logo-section {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ts-primary) 0%, var(--ts-accent) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            border: 1px solid rgba(139, 0, 0, 0.2);
+        }
+        
+        .logo-section h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ts-text);
+            margin-bottom: 8px;
+        }
+        
+        .logo-section p {
+            color: var(--ts-text-secondary);
+            font-size: 1rem;
+        }
+        
+        .login-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-content h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--ts-text);
+            margin-bottom: 10px;
+        }
+        
+        .login-content > p {
+            color: var(--ts-text-secondary);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .error-message {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            font-size: 0.9rem;
+        }
+        
+        .google-login-btn {
+            background: linear-gradient(135deg, var(--ts-primary) 0%, var(--ts-accent) 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .google-login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .google-login-btn:hover::before {
+            left: 100%;
+        }
+        
+        .google-login-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, var(--ts-accent) 0%, var(--ts-primary) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+        }
+        
+        .google-login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .security-info {
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid rgba(139, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+        }
+        
+        .security-info h3 {
+            color: var(--ts-primary);
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .security-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .security-info li {
+            color: var(--ts-text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .security-info li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--ts-primary);
+            font-weight: bold;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--ts-primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 25px;
+                margin: 20px;
+            }
+            
+            .back-link {
+                position: static;
+                display: block;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            .logo-section h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <a href="/" class="back-link">← Back to Hub</a>
+        
+        <div class="logo-section">
+            <div class="logo">🚀</div>
+            <h1>Tiny Sumo Huly</h1>
+            <p>Tiny Sumo. Giant Growth</p>
+        </div>
+        
+        <div class="login-content">
+            <h2>Secure Access Portal</h2>
+            <p>Access restricted to Tiny Sumo employees only</p>
+            
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            
+            <button id="login-btn" class="google-login-btn">
+                <span id="btn-text">Sign in with Google</span>
+            </button>
+            
+            <div class="security-info">
+                <h3>🔒 Security Features</h3>
+                <ul>
+                    <li>Domain restriction: tiny-sumo.com emails only</li>
+                    <li>OAuth 2.0 authentication protocol</li>
+                    <li>Encrypted token-based sessions</li>
+                    <li>Role-based access control</li>
+                    <li>Single Sign-On (SSO) integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // OAuth Login Simulation
+        document.getElementById('login-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const button = this;
+            const btnText = document.getElementById('btn-text');
+            const errorDiv = document.getElementById('error-message');
+            
+            // Clear previous errors
+            errorDiv.style.display = 'none';
+            
+            // Show loading state
+            button.disabled = true;
+            btnText.innerHTML = '<span class="loading-spinner"></span>Authenticating...';
+            
+            // Simulate OAuth flow
+            setTimeout(() => {
+                // In real implementation, this would redirect to Google OAuth
+                // For demo, we'll simulate the authentication flow
+                
+                const userEmail = prompt('Enter your email (must be @tiny-sumo.com):');
+                
+                if (!userEmail) {
+                    showError('Email is required');
+                    resetButton();
+                    return;
+                }
+                
+                if (!userEmail.toLowerCase().endsWith('@tiny-sumo.com')) {
+                    showError('Access restricted to Tiny Sumo employees only');
+                    resetButton();
+                    return;
+                }
+                
+                // Simulate successful authentication
+                btnText.innerHTML = '✅ Authentication Successful';
+                button.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+                
+                setTimeout(() => {
+                    // In real implementation, redirect to dashboard
+                    window.location.href = '/dashboard';
+                }, 1500);
+                
+            }, 1500);
+        });
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        function resetButton() {
+            const button = document.getElementById('login-btn');
+            const btnText = document.getElementById('btn-text');
+            
+            button.disabled = false;
+            btnText.innerHTML = 'Sign in with Google';
+        }
+        
+        // Handle URL parameters for auth states
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('auth') === 'success') {
+            // Show success message
+            document.querySelector('.login-content h2').textContent = 'Welcome Back!';
+            document.querySelector('.login-content p').textContent = 'You have been successfully authenticated';
+            document.getElementById('login-btn').style.display = 'none';
+            
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 3000);
+        }
+        
+        if (urlParams.get('error')) {
+            showError('Authentication failed. Please try again.');
+        }
+    </script>
+</body>
+</html>

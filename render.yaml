@@ -1,0 +1,12 @@
+services:
+  - type: static
+    name: tiny-sumo-huly
+    buildCommand: npm ci
+    staticPublishPath: ./public
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PUBLIC_URL
+        value: https://hub.tiny-sumo.com

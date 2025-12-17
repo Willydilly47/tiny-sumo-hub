@@ -1,0 +1,53 @@
+# Tiny Sumo Marketing Hub
+
+Professional marketing agency platform deployed on Render.com
+
+## 🌐 Live URL
+https://pm.tiny-sumo.com
+
+*Deployment test: 2025-12-17 08:42 AM - AWS Amplify fix verification*
+
+## 🚀 Deployment
+This repository is configured for automatic deployment on Render.com via the `render.yaml` configuration file.
+
+### Quick Deploy
+1. Connect this repository to your Render.com account
+2. The service will auto-deploy using the `render.yaml` configuration
+3. Add custom domain `pm.tiny-sumo.com` in Render dashboard
+4. Update DNS to point to Render's provided IP
+
+### Local Development
+```bash
+npm install
+npm run dev
+```
+
+### Build for Production
+```bash
+npm run build
+npm run preview
+```
+
+## 🔧 Configuration
+- **Environment**: Node.js 18
+- **Port**: 3000
+- **Build Command**: `npm ci && npm run build`
+- **Start Command**: `npm run preview`
+
+## 🔐 Authentication Setup
+Google OAuth credentials should be configured in Render.com environment variables:
+- `GOOGLE_CLIENT_ID`
+- `GOOGLE_CLIENT_SECRET`
+- `GOOGLE_ALLOWED_DOMAIN`
+
+### OAuth Configuration Features:
+- ✅ **Domain Restriction**: Only tiny-sumo.com email addresses
+- ✅ **Secure Authentication**: Google OAuth 2.0
+- ✅ **Session Management**: Secure user sessions
+- ✅ **HTTPS Required**: Encrypted connections only
+
+## 📁 Structure
+- `public/index.html` - Marketing hub landing page
+- `vite.config.js` - Vite configuration
+- `render.yaml` - Render.com deployment config
+- `Dockerfile` - Container configuration
