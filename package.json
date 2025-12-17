@@ -4,16 +4,13 @@
   "description": "Tiny Sumo Marketing Hub - Professional Platform",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "start": "npm run preview"
+    "dev": "serve -s public -l 3000",
+    "build": "echo 'No build needed for static files'",
+    "preview": "serve -s public -l 3000",
+    "start": "serve -s public -l 3000"
   },
   "dependencies": {
-    "vue": "^3.3.4",
-    "vite": "^4.4.5"
+    "serve": "^14.2.1"
   },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3"
-  }
+  "devDependencies": {}
 }

@@ -2,7 +2,7 @@ services:
   - type: web
     name: tiny-sumo-hub
     env: node
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci
     startCommand: npm run preview
     plan: free
     healthCheckPath: /
