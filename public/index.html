@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiny Sumo Marketing Hub</title>
+    <title>Tiny Sumo Marketing Hub - Internal Tools</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 40px;
+            padding: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
             text-align: center;
-            max-width: 600px;
+            margin-bottom: 40px;
         }
         h1 {
             font-size: 3rem;
@@ -27,66 +28,171 @@
         }
         .subtitle {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
             opacity: 0.9;
         }
         .status {
             background: rgba(255,255,255,0.2);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            margin: 20px 0;
+            text-align: center;
+            margin-bottom: 40px;
         }
-        .features {
+        .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
-        .feature {
+        .tool-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .tool-card:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .tool-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .tool-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .tool-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        .quick-access {
             background: rgba(255,255,255,0.1);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
+            margin-bottom: 30px;
         }
-        .emoji {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        .quick-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .quick-link {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .quick-link:hover {
+            background: rgba(255,255,255,0.3);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Tiny Sumo Marketing Hub</h1>
-        <p class="subtitle">Professional Marketing Agency Platform</p>
+        <div class="header">
+            <h1>🚀 Tiny Sumo Marketing Hub</h1>
+            <p class="subtitle">Your Central Command Center</p>
+        </div>
         
-        <div class="status">
-            <h2>✅ Platform Deployed Successfully!</h2>
-            <p>Your marketing agency platform is now live and accessible from anywhere in the world.</p>
-        </div>
-
-        <div class="features">
-            <div class="feature">
-                <div class="emoji">📊</div>
-                <h3>Analytics Dashboard</h3>
-                <p>Track campaign performance and ROI</p>
-            </div>
-            <div class="feature">
-                <div class="emoji">👥</div>
-                <h3>Client Management</h3>
-                <p>Organize contacts and projects</p>
-            </div>
-            <div class="feature">
-                <div class="emoji">🤖</div>
-                <h3>AI Insights</h3>
-                <p>Get intelligent marketing recommendations</p>
-            </div>
-            <div class="feature">
-                <div class="emoji">📱</div>
-                <h3>Mobile Ready</h3>
-                <p>Access from any device, anywhere</p>
+        <div class="quick-access">
+            <h3>⚡ Quick Access</h3>
+            <div class="quick-links">
+                <a href="https://analytics.tiny-sumo.com" class="quick-link">📊 Analytics</a>
+                <a href="https://clients.tiny-sumo.com" class="quick-link">👥 Clients</a>
+                <a href="https://projects.tiny-sumo.com" class="quick-link">📁 Projects</a>
+                <a href="https://campaigns.tiny-sumo.com" class="quick-link">🎯 Campaigns</a>
             </div>
         </div>
 
-        <div style="margin-top: 40px; opacity: 0.8;">
+        <div class="tools-grid">
+            <a href="https://analytics.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">📊</span>
+                <div class="tool-title">Analytics Dashboard</div>
+                <div class="tool-description">Track campaign performance, ROI, and key metrics across all channels</div>
+            </a>
+
+            <a href="https://clients.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">👥</span>
+                <div class="tool-title">Client Management</div>
+                <div class="tool-description">CRM system for managing contacts, deals, and client relationships</div>
+            </a>
+
+            <a href="https://projects.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">📁</span>
+                <div class="tool-title">Project Management</div>
+                <div class="tool-description">Task management, timelines, and team collaboration tools</div>
+            </a>
+
+            <a href="https://campaigns.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">🎯</span>
+                <div class="tool-title">Campaign Manager</div>
+                <div class="tool-description">Create, manage, and track marketing campaigns across platforms</div>
+            </a>
+
+            <a href="https://content.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">✍️</span>
+                <div class="tool-title">Content Studio</div>
+                <div class="tool-description">Content creation, scheduling, and publishing tools</div>
+            </a>
+
+            <a href="https://seo.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">🔍</span>
+                <div class="tool-title">SEO Tools</div>
+                <div class="tool-description">Keyword research, site audits, and ranking monitoring</div>
+            </a>
+
+            <a href="https://social.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">📱</span>
+                <div class="tool-title">Social Media</div>
+                <div class="tool-description">Schedule posts, monitor mentions, and manage social accounts</div>
+            </a>
+
+            <a href="https://email.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">📧</span>
+                <div class="tool-title">Email Marketing</div>
+                <div class="tool-description">Design campaigns, manage lists, and track performance</div>
+            </a>
+
+            <a href="https://reports.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">📈</span>
+                <div class="tool-title">Reports & Insights</div>
+                <div class="tool-description">Custom reports, data visualization, and performance insights</div>
+            </a>
+
+            <a href="https://team.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">👨‍💼</span>
+                <div class="tool-title">Team Portal</div>
+                <div class="tool-description">Employee management, time tracking, and HR tools</div>
+            </a>
+
+            <a href="https://billing.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">💰</span>
+                <div class="tool-title">Billing & Finance</div>
+                <div class="tool-description">Invoicing, expense tracking, and financial reporting</div>
+            </a>
+
+            <a href="https://automation.tiny-sumo.com" class="tool-card">
+                <span class="tool-emoji">🤖</span>
+                <div class="tool-title">Marketing Automation</div>
+                <div class="tool-description">Workflow automation, lead nurturing, and trigger-based campaigns</div>
+            </a>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center; opacity: 0.8;">
             <p>🌐 Domain: pm.tiny-sumo.com</p>
             <p>🔒 HTTPS: Secure and encrypted</p>
             <p>⚡ Powered by Huly Platform</p>
