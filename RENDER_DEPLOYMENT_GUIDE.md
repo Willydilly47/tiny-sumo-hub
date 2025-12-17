@@ -44,7 +44,7 @@ In the Render dashboard, go to "Environment" tab and add these variables:
 ```bash
 NODE_ENV=production
 PORT=3000
-PUBLIC_URL=https://hub.tiny-sumo.com
+PUBLIC_URL=https://pm.tiny-sumo.com
 
 # OAuth Configuration (add your own credentials)
 GOOGLE_CLIENT_ID=your_google_oauth_client_id
@@ -55,7 +55,7 @@ GOOGLE_ALLOWED_DOMAIN=tiny-sumo.com
 ### 5. Add Custom Domain
 1. In your service dashboard, go to "Settings" → "Domains"
 2. Click "Add Custom Domain"
-3. Enter: `hub.tiny-sumo.com`
+3. Enter: `pm.tiny-sumo.com`
 4. Render will provide DNS instructions
 
 ### 6. Update DNS
@@ -73,7 +73,7 @@ In your domain registrar (Namecheap/GoDaddy/etc.), update DNS:
 1. Click "Create Web Service"
 2. Wait for build and deployment (3-5 minutes)
 3. Test: https://[your-app].onrender.com
-4. Test custom domain: https://hub.tiny-sumo.com
+4. Test custom domain: https://pm.tiny-sumo.com
 
 ---
 
@@ -88,7 +88,7 @@ In your domain registrar (Namecheap/GoDaddy/etc.), update DNS:
 ### Post-Deployment
 - [ ] Application builds successfully
 - [ ] Landing page loads at Render URL
-- [ ] Landing page loads at hub.tiny-sumo.com
+- [ ] Landing page loads at pm.tiny-sumo.com
 - [ ] HTTPS certificate active
 - [ ] Mobile responsive design works
 
@@ -97,7 +97,7 @@ In your domain registrar (Namecheap/GoDaddy/etc.), update DNS:
 ## 🌐 Expected Result
 
 **Your marketing hub will be live at:**
-- **Primary URL**: https://hub.tiny-sumo.com
+- **Primary URL**: https://pm.tiny-sumo.com
 - **Render URL**: https://[your-app].onrender.com
 
 **Features:**
@@ -131,7 +131,7 @@ In your domain registrar (Namecheap/GoDaddy/etc.), update DNS:
 
 ## 📞 Next Steps After Deployment
 
-1. **Test the platform** at https://hub.tiny-sumo.com
+1. **Test the platform** at https://pm.tiny-sumo.com
 2. **Configure Google OAuth** for authentication
 3. **Add your marketing content** to the landing page
 4. **Set up analytics** (Google Analytics, etc.)

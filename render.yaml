@@ -12,4 +12,4 @@ services:
       - key: PORT
         value: 3000
       - key: PUBLIC_URL
-        value: https://hub.tiny-sumo.com
+        value: https://pm.tiny-sumo.com

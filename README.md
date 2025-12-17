@@ -3,7 +3,7 @@
 Professional marketing agency platform deployed on Render.com
 
 ## 🌐 Live URL
-https://hub.tiny-sumo.com
+https://pm.tiny-sumo.com
 
 ## 🚀 Deployment
 This repository is configured for automatic deployment on Render.com via the `render.yaml` configuration file.
@@ -11,7 +11,7 @@ This repository is configured for automatic deployment on Render.com via the `re
 ### Quick Deploy
 1. Connect this repository to your Render.com account
 2. The service will auto-deploy using the `render.yaml` configuration
-3. Add custom domain `hub.tiny-sumo.com` in Render dashboard
+3. Add custom domain `pm.tiny-sumo.com` in Render dashboard
 4. Update DNS to point to Render's provided IP
 
 ### Local Development
