@@ -10,5 +10,20 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 3000
+  },
+  build: {
+    target: 'es2015',
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue'],
+          utils: []
+        }
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['vue']
   }
 })

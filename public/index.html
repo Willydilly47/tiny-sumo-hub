@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Tiny Sumo Marketing Hub - Internal Tools</title>
     <style>
         body {
@@ -52,12 +56,18 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         .tool-card:hover {
             background: rgba(255,255,255,0.2);
             border-color: rgba(255,255,255,0.3);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .tool-card:active {
+            transform: scale(0.98);
+            background: rgba(255,255,255,0.3);
         }
         .tool-emoji {
             font-size: 2.5rem;
@@ -95,9 +105,84 @@
             color: white;
             font-size: 0.9rem;
             transition: background 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
-        .quick-link:hover {
+        .quick-link:hover, .quick-link:active {
             background: rgba(255,255,255,0.3);
+            transform: scale(0.98);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 20px;
+            }
+            .tool-card {
+                padding: 20px;
+                min-height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .tool-emoji {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            .tool-title {
+                font-size: 1.1rem;
+            }
+            .tool-description {
+                font-size: 0.9rem;
+            }
+            .quick-links {
+                gap: 10px;
+            }
+            .quick-link {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .tool-card {
+                padding: 15px;
+            }
+            .quick-access {
+                padding: 15px;
+            }
+        }
+
+        /* Performance optimizations */
+        .tool-card, .quick-link {
+            will-change: transform;
+        }
+        
+        /* Prevent zoom on input focus (iOS) */
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            select,
+            textarea,
+            input {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
