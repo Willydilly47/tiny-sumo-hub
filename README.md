@@ -38,6 +38,12 @@ Google OAuth credentials should be configured in Render.com environment variable
 - `GOOGLE_CLIENT_SECRET`
 - `GOOGLE_ALLOWED_DOMAIN`
 
+### OAuth Configuration Features:
+- ✅ **Domain Restriction**: Only tiny-sumo.com email addresses
+- ✅ **Secure Authentication**: Google OAuth 2.0
+- ✅ **Session Management**: Secure user sessions
+- ✅ **HTTPS Required**: Encrypted connections only
+
 ## 📁 Structure
 - `public/index.html` - Marketing hub landing page
 - `vite.config.js` - Vite configuration
